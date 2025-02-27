@@ -22,7 +22,7 @@ class Load extends Phaser.Scene {
 		
         // load spritesheet
         this.load.spritesheet('waveBackground', './assets/waveSheet.png', {
-            frameHeight: 706,
+            frameHeight: 695,
 			frameWidth: 905
         })
 
