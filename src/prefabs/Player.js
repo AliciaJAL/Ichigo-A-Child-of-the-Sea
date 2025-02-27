@@ -21,8 +21,10 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 		 this.direction = new Phaser.Math.Vector2(0)
 		 if (this.scene.leftKey.isDown) {
 			 this.direction.x = -1
+			 this.setFlipX(true)
 		 } else if (this.scene.rightKey.isDown) {
 			 this.direction.x = 1
+			 this.setFlipX(false)
 		 }
 	 
 		 if (this.scene.upKey.isDown) {
