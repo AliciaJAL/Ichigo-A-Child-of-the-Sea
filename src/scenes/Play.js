@@ -29,6 +29,8 @@ class Play extends Phaser.Scene {
         const graphics = this.add.graphics()
         graphics.fillStyle(0xF8E7B8, 1)
 		graphics.fillRect(0, window.innerHeight - (window.innerHeight / 5), window.innerWidth, window.innerHeight / 5)
+		
+		this.crate = new Crate(this, window.innerWidth / 10, window.innerHeight / 1.25).setOrigin(0.5, 0.5).setScale(0.25)
 
 		// Add Player & set scale
 		this.player = new Player(this, window.innerWidth / 10, window.innerHeight / 1.25)
