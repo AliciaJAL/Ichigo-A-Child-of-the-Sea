@@ -1,3 +1,5 @@
+//test
+
 let config = {
     type: Phaser.AUTO,
 	width: window.innerWidth,  // Dynamically set to the window size
