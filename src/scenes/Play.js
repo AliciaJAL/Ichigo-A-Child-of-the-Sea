@@ -16,24 +16,31 @@ class Play extends Phaser.Scene {
 			repeat: -1, //this repeats infinitly
 			frames: this.anims.generateFrameNumbers('waveBackground', {
 				start: 0,
-				end: 9
-			})
+				end: 9			})
 
 		})
 
 		this.waveBackground.setDisplaySize(window.innerWidth, window.innerHeight)
-		this.waveBackground.setPosition(window.innerWidth / 2, window.innerHeight / 3)
+		this.waveBackground.setPosition(window.innerWidth / 2, window.innerHeight / 2)
 		this.waveBackground.play('waveBg')
 
 		// Add a yellow rectangle at the bottom of the screen (will make sand texture later)
         const graphics = this.add.graphics()
         graphics.fillStyle(0xF8E7B8, 1)
 		graphics.fillRect(0, window.innerHeight - (window.innerHeight / 5), window.innerWidth, window.innerHeight / 5)
+		
+		this.crate = new Crate(this, window.innerWidth / 5, window.innerHeight / 1.25).setOrigin(0.5, 0.5).setScale(0.25)
 
 		// Add Player & set scale
 		this.player = new Player(this, window.innerWidth / 10, window.innerHeight / 1.25)
 		this.player.setOrigin(0.5, 0.5)
 		this.player.setScale(0.25) // should change later so it adjusts to the screen
+
+		this.physics.add.collider(this.player, this.crate, () => {
+            if (this.player.body.blocked.down) {
+				 this.player.setVelocityX(this.crate.body.velocity.x);
+            }
+        });
 		
 
 		// Input keys

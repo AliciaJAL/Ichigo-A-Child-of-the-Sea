@@ -17,11 +17,12 @@ class Load extends Phaser.Scene {
 
         // load images/tile sprites
         this.load.image('player', './assets/player.png')
+		this.load.image('crate', './assets/Crate.png')
 		
 		
         // load spritesheet
         this.load.spritesheet('waveBackground', './assets/waveSheet.png', {
-            frameHeight: 800,
+            frameHeight: 695,
 			frameWidth: 905
         })
 

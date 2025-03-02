@@ -1,46 +1,38 @@
 class Player extends Phaser.Physics.Arcade.Sprite {
-	constructor(scene, x, y, texture = "player") {
-		super(scene, x, y, texture) // call Sprite parent class
-        scene.add.existing(this)           // add Player to existing scene
-		this.scene = scene
-		scene.physics.add.existing(this) 
+    constructor(scene, x, y, texture = "player") {
+        super(scene, x, y, texture); // Call Sprite parent class
+        scene.add.existing(this); // Add Player to existing scene
+        this.scene = scene;
+        scene.physics.add.existing(this);
 
-		// Setting Player's Physics
-        this.body.onCollide = true
-		this.setGravityY(100)
+        // Setting Player's Physics
+        this.body.onCollide = true;
+		this.body.setCollideWorldBounds(true)
+        this.setGravityY(600); // Increase gravity for better jumping physics
 
-		// Player Jump & Movement vars
-		this.VEL = 500
-		this.jump = false
-		this.jumpHeight = -300
-		
-		}
+        // Player Jump & Movement vars
+        this.VEL = 300;
+        this.jumpHeight = -400; // Stronger jump force
 
-		update(time,dt) {
-		// player movement
-		 this.direction = new Phaser.Math.Vector2(0)
-		 if (this.scene.leftKey.isDown) {
-			 this.direction.x = -1
-		 } else if (this.scene.rightKey.isDown) {
-			 this.direction.x = 1
-		 }
-	 
-		 if (this.scene.upKey.isDown) {
-			if (!this.jump) {
-				this.body.setVelocity(this.jumpHeight)
-				this.jump = true;
-			}
-		}
 	
-		if (this.scene.upKey.isUp) {
-			this.jump = false
-		}
+    }
 
+    update() {
+        // Player movement
+        let direction = new Phaser.Math.Vector2(0);
+        
+        if (this.scene.leftKey.isDown) {
+            direction.x = -1;
+            this.setFlipX(true);
+        } else if (this.scene.rightKey.isDown) {
+            direction.x = 1;
+            this.setFlipX(false);
+        }
 
-		 // else if (this.scene.downKey.isDown) {
-			// this.direction.y = 1 }
-	 
-		 this.setVelocity(this.VEL * this.direction.x, this.VEL * this.direction.y)
+        if (this.scene.upKey.isDown && this.body.blocked.down) {
+            this.setVelocityY(this.jumpHeight);
+        }
 
-		}
+        this.setVelocityX(this.VEL * direction.x);
+    }
 }
