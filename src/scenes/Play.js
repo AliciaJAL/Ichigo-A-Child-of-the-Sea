@@ -29,6 +29,7 @@ class Play extends Phaser.Scene {
         // graphics.fillStyle(0xF8E7B8, 1)
 		// graphics.fillRect(0, window.innerHeight - (window.innerHeight / 5), window.innerWidth*2, window.innerHeight / 5)
 
+		//and sand 
 		const sand = this.physics.add.staticImage(window.innerWidth / 2, window.innerHeight - (window.innerHeight / 10), 'sand').setOrigin(0.5, 0.5)
 		.setDisplaySize(window.innerWidth * 2, window.innerHeight / 5)
 		.refreshBody()
