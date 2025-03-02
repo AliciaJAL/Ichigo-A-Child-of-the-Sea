@@ -18,6 +18,7 @@ class Load extends Phaser.Scene {
         // load images/tile sprites
         this.load.image('player', './assets/player.png')
 		this.load.image('crate', './assets/Crate.png')
+        this.load.image('sand', './assets/SandTile.png')
 		
 		
         // load spritesheet

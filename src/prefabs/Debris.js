@@ -6,7 +6,7 @@ class Debris extends Phaser.Physics.Arcade.Sprite {
 		scene.physics.add.existing(this) 
 
 		// Setting Physics
-        this.body.setImmovable = true
+		this.body.setImmovable(true)
 		this.setGravityY(100)
 		}
 
