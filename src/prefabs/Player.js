@@ -6,26 +6,65 @@ class Player extends PhysicsObject {
 		this.setScale(0.25)
 
         // Player Jump & Movement vars
-        this.VEL = 300;
-        this.jumpHeight = -420; // Stronger jump force
-		this.setVelocityY(-300);
+        this.VEL = 200;
+        this.jumpHeight = -400; // Stronger jump force
+		
+
+		// Adjust the physics body size to be smaller
+		this.body.setSize(this.width * 0.45)
+		
 
     }
 
     update() {
         // Player movement
-        let direction = new Phaser.Math.Vector2(0);
-        
+		       // Player movement
+		let direction = new Phaser.Math.Vector2(0);
+		
+        if (this.scene.upKey.isDown && this.body.blocked.down) {
+            this.setVelocityY(-300)
+        }
+
+        this.setVelocityX(this.VEL * direction.x);
+
+		if (this.scene.leftKey.isDown) {
+			this.setVelocityX(-this.VEL)  // Supppose make sure the leftward velocity is smooth
+		} else if (this.scene.rightKey.isDown) {
+			this.setVelocityX(this.VEL)  // Handle rightward velocity
+		}else{
+			this.setVelocityX(0)
+		}
+
+		// Round the position to avoid subpixel movement causing jitter
+		this.setPosition(Math.round(this.x), Math.round(this.y))
+
 		direction.x = this.scene.rightKey.isDown - this.scene.leftKey.isDown
-		this.setFlipX(direction.x < 0);
+		this.setFlipX(direction.x < 0) 
+		
+		
+		/*
+		let direction = new Phaser.Math.Vector2(0);
 		
         if (this.scene.upKey.isDown && this.body.blocked.down) {
             this.setVelocityY(this.jumpHeight);
         }
 
-		console.log(this.body.touching.down)
-
         this.setVelocityX(this.VEL * direction.x);
+
+		if (this.scene.leftKey.isDown) {
+			this.setVelocityX(-this.VEL)  // Make sure the leftward velocity is smooth
+		} else if (this.scene.rightKey.isDown) {
+			this.setVelocityX(this.VEL)  // Handle rightward velocity
+		}else{
+			this.setVelocityX(0)
+		}
+
+		// Round the position to avoid subpixel movement causing jitter
+		this.setPosition(Math.round(this.x), Math.round(this.y))
+		
+		direction.x = this.scene.rightKey.isDown - this.scene.leftKey.isDown
+		this.setFlipX(direction.x < 0)*/ 
+		
     }
 }
 																															

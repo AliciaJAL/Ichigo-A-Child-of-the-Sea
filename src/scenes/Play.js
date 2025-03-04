@@ -24,35 +24,30 @@ class Play extends Phaser.Scene {
 		this.waveBackground.setPosition(window.innerWidth / 2, window.innerHeight / 2)
 		this.waveBackground.play('waveBg')
 
-		// Add a yellow rectangle at the bottom of the screen (will make sand texture later)
-        // const graphics = this.add.graphics()
-        // graphics.fillStyle(0xF8E7B8, 1)
-		// graphics.fillRect(0, window.innerHeight - (window.innerHeight / 5), window.innerWidth*2, window.innerHeight / 5)
+		this.objects = this.physics.add.group();	 // Creates a dynamic physic group
+		this.staticGroup = this.physics.add.staticGroup();	// Defining static group for static objects like ground and platforms
 
-		//and sand
-		this.objects = this.physics.add.group();
-		this.staticGroup = this.physics.add.staticGroup();
-
+		// Add elements and at the end add if in staticGroup or objects (non static)
 		this.sand = new Sand(this, window.innerWidth / 2, window.innerHeight - (window.innerHeight / 10), this.staticGroup)
-		this.crate = new Crate(this, window.innerWidth / 5, window.innerHeight - (window.innerHeight / 5), this.objects)
+		this.crate1 = new Crate(this, window.innerWidth / 5, window.innerHeight - (window.innerHeight / 5), this.objects)
+		this.crate2 = new Crate(this, window.innerWidth / 3, window.innerHeight - (window.innerHeight / 5), this.objects)
+		this.crate3 = new Crate(this, window.innerWidth / 1.5, window.innerHeight - (window.innerHeight / 5), this.objects)
 		this.player = new Player(this, window.innerWidth / 10, window.innerHeight - (window.innerHeight / 5), this.objects)
 
-		
+		// Add collisions to static and non static objects
+
+		// Check when objects like crates or the player collide with objects in this.staticGroup (like the sand)
 		this.physics.add.collider(this.staticGroup, this.objects, (ground, obj) => {
 			obj.setVelocityY(0)
-			// obj.y = ground.y - ground.displayHeight / 2
+		
 		})
-		// this.physics.add.collider(this.objects, this.staticGroup)
-
-		this.physics.add.collider(this.objects, this.objects)
-
-		console.log(this.objects)
-		console.log(this.staticGroup)
+		this.physics.add.collider(this.objects, this.objects, (obj1, obj2) => {})
 
 
 		//camera
 		this.cameras.main.setBounds(0, 0, window.innerWidth*2, window.innerHeight)
 		this.cameras.main.startFollow(this.player, true, 0.25, 0.25)
+
 		//extend world physics	
         this.physics.world.setBounds(0, 0, window.innerWidth*2, window.innerHeight)
 	
@@ -64,14 +59,14 @@ class Play extends Phaser.Scene {
         this.rightKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D)
     }
 
-	
+    update(time, dt) {
+		time /= 1000
+		dt /= 1000
 
-	
-
-    update() {
-		this.player.update()
-		this.crate.update()
-		   
+		// iterating over all the objects in this.objects
+		this.objects.getChildren().forEach(obj => {
+			obj.update(time, dt)
+		});		   
 		
 		
 	}		
