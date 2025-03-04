@@ -1,38 +1,31 @@
-class Player extends Phaser.Physics.Arcade.Sprite {
-    constructor(scene, x, y, texture = "player") {
-        super(scene, x, y, texture); // Call Sprite parent class
-        scene.add.existing(this); // Add Player to existing scene
-        this.scene = scene;
-        scene.physics.add.existing(this);
+class Player extends PhysicsObject {
+    constructor(scene, x, y, group) {
+        super(scene, x, y, "player", group); // Call Sprite parent class
 
-        // Setting Player's Physics
-        this.body.onCollide = true;
-		this.body.setCollideWorldBounds(true)
-        this.setGravityY(600); // Increase gravity for better jumping physics
+		this.setOrigin(1,1)
+		this.setScale(0.25)
 
         // Player Jump & Movement vars
         this.VEL = 300;
-        this.jumpHeight = -400; // Stronger jump force
+        this.jumpHeight = -420; // Stronger jump force
+		this.setVelocityY(-300);
 
-	
     }
 
     update() {
         // Player movement
         let direction = new Phaser.Math.Vector2(0);
         
-        if (this.scene.leftKey.isDown) {
-            direction.x = -1;
-            this.setFlipX(true);
-        } else if (this.scene.rightKey.isDown) {
-            direction.x = 1;
-            this.setFlipX(false);
-        }
-
+		direction.x = this.scene.rightKey.isDown - this.scene.leftKey.isDown
+		this.setFlipX(direction.x < 0);
+		
         if (this.scene.upKey.isDown && this.body.blocked.down) {
             this.setVelocityY(this.jumpHeight);
         }
 
+		console.log(this.body.touching.down)
+
         this.setVelocityX(this.VEL * direction.x);
     }
 }
+																															

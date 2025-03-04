@@ -29,28 +29,27 @@ class Play extends Phaser.Scene {
         // graphics.fillStyle(0xF8E7B8, 1)
 		// graphics.fillRect(0, window.innerHeight - (window.innerHeight / 5), window.innerWidth*2, window.innerHeight / 5)
 
-		//and sand 
-		const sand = this.physics.add.staticImage(window.innerWidth / 2, window.innerHeight - (window.innerHeight / 10), 'sand').setOrigin(0.5, 0.5)
-		.setDisplaySize(window.innerWidth * 2, window.innerHeight / 5)
-		.refreshBody()
-	
-		this.crate = new Crate(this, window.innerWidth / 5, window.innerHeight - (window.innerHeight / 5)).setOrigin(1, 1).setScale(0.25)
+		//and sand
+		this.objects = this.physics.add.group();
+		this.staticGroup = this.physics.add.staticGroup();
 
-		// Add Player & set scale
-		this.player = new Player(this, window.innerWidth / 10, window.innerHeight - (window.innerHeight / 5))
-		this.player.setOrigin(1,1)
-		this.player.setScale(0.25) // should change later so it adjusts to the screen
+		this.sand = new Sand(this, window.innerWidth / 2, window.innerHeight - (window.innerHeight / 10), this.staticGroup)
+		this.crate = new Crate(this, window.innerWidth / 5, window.innerHeight - (window.innerHeight / 5), this.objects)
+		this.player = new Player(this, window.innerWidth / 10, window.innerHeight - (window.innerHeight / 5), this.objects)
 
-		this.physics.add.collider(this.player, this.crate, () => {
-            if (this.player.body.blocked.down) {
-				 this.player.setVelocityX(this.crate.body.velocity.x);
-            }
-        });
-
-		// Enable collision between the player and the sand platform
-		this.physics.add.collider(this.player, sand)
-		this.physics.add.collider(this.crate, sand)
 		
+		this.physics.add.collider(this.staticGroup, this.objects, (ground, obj) => {
+			obj.setVelocityY(0)
+			// obj.y = ground.y - ground.displayHeight / 2
+		})
+		// this.physics.add.collider(this.objects, this.staticGroup)
+
+		this.physics.add.collider(this.objects, this.objects)
+
+		console.log(this.objects)
+		console.log(this.staticGroup)
+
+
 		//camera
 		this.cameras.main.setBounds(0, 0, window.innerWidth*2, window.innerHeight)
 		this.cameras.main.startFollow(this.player, true, 0.25, 0.25)
