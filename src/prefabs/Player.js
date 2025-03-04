@@ -8,17 +8,18 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         // Setting Player's Physics
         this.body.onCollide = true;
 		this.body.setCollideWorldBounds(true)
-        this.setGravityY(600); // Increase gravity for better jumping physics
+        this.setGravityY(600); // Increase gravity for better jumping physics 600
 
         // Player Jump & Movement vars
         this.VEL = 300;
-        this.jumpHeight = -400; // Stronger jump force
+        this.jumpHeight = -400; // Stronger jump force -400
 
 	
     }
 
     update() {
         // Player movement
+        console.log(this.body.touching.down)
         let direction = new Phaser.Math.Vector2(0);
         
         if (this.scene.leftKey.isDown) {
@@ -29,7 +30,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
             this.setFlipX(false);
         }
 
-        if (this.scene.upKey.isDown && this.body.blocked.down) {
+        if (this.scene.upKey.isDown && this.body.touching.down) {
             this.setVelocityY(this.jumpHeight);
         }
 

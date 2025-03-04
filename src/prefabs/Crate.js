@@ -8,11 +8,11 @@ class Crate extends Phaser.Physics.Arcade.Sprite {
 		// Setting Physics
         this.body.onCollide = true
 		this.body.setCollideWorldBounds(true)	
-		//this.setBounceX(1)	
+		this.setBounceX(0)	
 		
 		}
 
 		update(time=0,dt=0) {
-			this.setVelocityX(this.body.velocity.x*.9)
+			this.setVelocityX(this.body.velocity.x*0.9)
 		}
 }
