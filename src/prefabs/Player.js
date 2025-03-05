@@ -1,9 +1,6 @@
-class Player extends Phaser.Physics.Arcade.Sprite {
-    constructor(scene, x, y, texture = "player") {
-        super(scene, x, y, texture); // Call Sprite parent class
-        scene.add.existing(this); // Add Player to existing scene
-        this.scene = scene;
-        scene.physics.add.existing(this);
+class Player extends PhysicsObject {
+    constructor(scene, x, y, group) {
+        super(scene, x, y, "player", group); // Call Sprite parent class
 
         // Setting Player's Physics
         this.body.onCollide = true;
@@ -14,7 +11,6 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.VEL = 300;
         this.jumpHeight = -400; // Stronger jump force -400
 
-	
     }
 
     update() {
@@ -31,9 +27,54 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         }
 
         if (this.scene.upKey.isDown && this.body.touching.down) {
+        // Player movement
+		       // Player movement
+		let direction = new Phaser.Math.Vector2(0);
+		
+        if (this.scene.upKey.isDown && this.body.blocked.down) {
+            this.setVelocityY(-300)
+        }
+
+        this.setVelocityX(this.VEL * direction.x);
+
+		if (this.scene.leftKey.isDown) {
+			this.setVelocityX(-this.VEL)  // Supppose make sure the leftward velocity is smooth
+		} else if (this.scene.rightKey.isDown) {
+			this.setVelocityX(this.VEL)  // Handle rightward velocity
+		}else{
+			this.setVelocityX(0)
+		}
+
+		// Round the position to avoid subpixel movement causing jitter
+		this.setPosition(Math.round(this.x), Math.round(this.y))
+
+		direction.x = this.scene.rightKey.isDown - this.scene.leftKey.isDown
+		this.setFlipX(direction.x < 0) 
+		
+		
+		/*
+		let direction = new Phaser.Math.Vector2(0);
+		
+        if (this.scene.upKey.isDown && this.body.blocked.down) {
             this.setVelocityY(this.jumpHeight);
         }
 
         this.setVelocityX(this.VEL * direction.x);
+
+		if (this.scene.leftKey.isDown) {
+			this.setVelocityX(-this.VEL)  // Make sure the leftward velocity is smooth
+		} else if (this.scene.rightKey.isDown) {
+			this.setVelocityX(this.VEL)  // Handle rightward velocity
+		}else{
+			this.setVelocityX(0)
+		}
+
+		// Round the position to avoid subpixel movement causing jitter
+		this.setPosition(Math.round(this.x), Math.round(this.y))
+		
+		direction.x = this.scene.rightKey.isDown - this.scene.leftKey.isDown
+		this.setFlipX(direction.x < 0)*/ 
+		
     }
 }
+																															
