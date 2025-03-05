@@ -29,10 +29,10 @@ class Play extends Phaser.Scene {
 
 		// Add elements and at the end add if in staticGroup or objects (non static)
 		this.sand = new Sand(this, window.innerWidth / 2, window.innerHeight - (window.innerHeight / 12), this.staticGroup)
-		this.crate1 = new Crate(this, window.innerWidth / 5, window.innerHeight - (window.innerHeight / 6), this.objects)
-		this.crate2 = new Crate(this, window.innerWidth / 3, window.innerHeight - (window.innerHeight / 6), this.objects)
-		this.crate3 = new Crate(this, window.innerWidth / 1.5, window.innerHeight - (window.innerHeight / 6), this.objects)
-		this.player = new Player(this, window.innerWidth / 10, window.innerHeight - (window.innerHeight / 6), this.objects)
+		this.crate1 = new Crate(this, window.innerWidth / 5, window.innerHeight - (window.innerHeight / 10), this.objects)
+		this.crate2 = new Crate(this, window.innerWidth / 3, window.innerHeight - (window.innerHeight / 10), this.objects)
+		this.crate3 = new Crate(this, window.innerWidth / 1.5, window.innerHeight- (window.innerHeight / 10), this.objects)
+		this.player = new Player(this, window.innerWidth / 10, window.innerHeight - (window.innerHeight / 10), this.objects)
 		this.wave = new Wave(this, -window.innerWidth, window.innerHeight,"greatWave")
 
 		// Add collisions to static and non static objects
