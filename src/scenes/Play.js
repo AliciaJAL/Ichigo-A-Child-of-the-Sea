@@ -28,11 +28,12 @@ class Play extends Phaser.Scene {
 		this.staticGroup = this.physics.add.staticGroup();	// Defining static group for static objects like ground and platforms
 
 		// Add elements and at the end add if in staticGroup or objects (non static)
-		this.sand = new Sand(this, window.innerWidth / 2, window.innerHeight - (window.innerHeight / 10), this.staticGroup)
-		this.crate1 = new Crate(this, window.innerWidth / 5, window.innerHeight - (window.innerHeight / 5), this.objects)
-		this.crate2 = new Crate(this, window.innerWidth / 3, window.innerHeight - (window.innerHeight / 5), this.objects)
-		this.crate3 = new Crate(this, window.innerWidth / 1.5, window.innerHeight - (window.innerHeight / 5), this.objects)
-		this.player = new Player(this, window.innerWidth / 10, window.innerHeight - (window.innerHeight / 5), this.objects)
+		this.sand = new Sand(this, window.innerWidth / 2, window.innerHeight - (window.innerHeight / 12), this.staticGroup)
+		this.crate1 = new Crate(this, window.innerWidth / 5, window.innerHeight - (window.innerHeight / 6), this.objects)
+		this.crate2 = new Crate(this, window.innerWidth / 3, window.innerHeight - (window.innerHeight / 6), this.objects)
+		this.crate3 = new Crate(this, window.innerWidth / 1.5, window.innerHeight - (window.innerHeight / 6), this.objects)
+		this.player = new Player(this, window.innerWidth / 10, window.innerHeight - (window.innerHeight / 6), this.objects)
+		this.wave = new Wave(this, -window.innerWidth, window.innerHeight,"greatWave")
 
 		// Add collisions to static and non static objects
 
@@ -66,7 +67,9 @@ class Play extends Phaser.Scene {
 		// iterating over all the objects in this.objects
 		this.objects.getChildren().forEach(obj => {
 			obj.update(time, dt)
-		});		   
+		});	
+		
+		this.wave.update()
 		
 		
 	}		
