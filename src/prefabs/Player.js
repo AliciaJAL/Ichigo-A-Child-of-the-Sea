@@ -8,8 +8,13 @@ class Player extends PhysicsObject {
         this.setGravityY(600); // Increase gravity for better jumping physics 600
 
         // Player Jump & Movement vars
-        this.VEL = 300;
-        this.jumpHeight = -400; // Stronger jump force -400
+        this.VEL = 200;
+        this.jumpHeight = -415; // Stronger jump force
+		
+
+		// Adjust the physics body size to be smaller
+		this.body.setSize(this.width * 0.40)
+		
 
     }
 
@@ -32,7 +37,7 @@ class Player extends PhysicsObject {
 		let direction = new Phaser.Math.Vector2(0);
 		
         if (this.scene.upKey.isDown && this.body.blocked.down) {
-            this.setVelocityY(-300)
+            this.setVelocityY(this.jumpHeight )
         }
 
         this.setVelocityX(this.VEL * direction.x);
