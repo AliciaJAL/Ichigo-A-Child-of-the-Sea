@@ -44,7 +44,17 @@ class Play extends Phaser.Scene {
 		
 		})
 		this.physics.add.collider(this.objects, this.objects, (obj1, obj2) => {})
-		this.physics.add.collider(this.player, this.waveGroup, (player, wave) => {})
+
+		this.waveSFX = this.sound.add('greatWaveSFX', { 
+			loop: false, 
+			detune: 0, // Ensures no pitch distortions
+			rate: 1,   // Default playback speed
+			volume: 1
+		});
+
+		this.physics.add.collider(this.player, this.waveGroup, (player, wave) => {
+			this.waveSFX.play()
+		})
 
 
 		//camera
@@ -60,6 +70,18 @@ class Play extends Phaser.Scene {
         // this.downKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S)
         this.leftKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A)
         this.rightKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D)
+
+
+		this.music = this.sound.add('waveBackgroundSFX', { 
+			loop: true, 
+			detune: 0, // Ensures no pitch distortions
+			rate: 1,   // Default playback speed
+			volume: 1
+		});
+
+		this.music.play()
+		
+		
     }
 
     update(time, dt) {

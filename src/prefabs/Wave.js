@@ -17,8 +17,5 @@ class Wave extends PhysicsObject {
 
 	update() {
 		this.setVelocityX(500)
-		console.log("Wave Velocity X: " + this.body.velocity.x)
-		
-		
 	}
 }
