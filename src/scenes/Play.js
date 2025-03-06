@@ -24,8 +24,9 @@ class Play extends Phaser.Scene {
 		this.waveBackground.setPosition(window.innerWidth / 2, window.innerHeight / 2)
 		this.waveBackground.play('waveBg')
 
-		this.objects = this.physics.add.group();	 // Creates a dynamic physic group
-		this.staticGroup = this.physics.add.staticGroup();	// Defining static group for static objects like ground and platforms
+		this.objects = this.physics.add.group()	 // Creates a dynamic physic group
+		this.staticGroup = this.physics.add.staticGroup()	// Defining static group for static objects like ground and platforms
+		this.waveGroup = this.physics.add.group()
 
 		// Add elements and at the end add if in staticGroup or objects (non static)
 		this.sand = new Sand(this, window.innerWidth / 2, window.innerHeight - (window.innerHeight / 12), this.staticGroup)
@@ -33,7 +34,7 @@ class Play extends Phaser.Scene {
 		this.crate2 = new Crate(this, window.innerWidth / 3, window.innerHeight - (window.innerHeight / 10), this.objects)
 		this.crate3 = new Crate(this, window.innerWidth / 1.5, window.innerHeight- (window.innerHeight / 10), this.objects)
 		this.player = new Player(this, window.innerWidth / 10, window.innerHeight - (window.innerHeight / 10), this.objects)
-		this.wave = new Wave(this, -window.innerWidth, window.innerHeight,"greatWave")
+		this.wave = new Wave(this, -window.innerWidth, window.innerHeight,"greatWave", this.waveGroup)
 
 		// Add collisions to static and non static objects
 
@@ -43,6 +44,7 @@ class Play extends Phaser.Scene {
 		
 		})
 		this.physics.add.collider(this.objects, this.objects, (obj1, obj2) => {})
+		this.physics.add.collider(this.player, this.waveGroup, (player, wave) => {})
 
 
 		//camera

@@ -11,7 +11,7 @@ class Player extends PhysicsObject {
 		
 
 		// Adjust the physics body size to be smaller
-		this.body.setSize(this.width * 0.45)
+		this.body.setSize(this.width * 0.40)
 		
 
     }
