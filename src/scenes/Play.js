@@ -60,6 +60,7 @@ class Play extends Phaser.Scene {
 		//camera
 		this.cameras.main.setBounds(0, 0, window.innerWidth*2, window.innerHeight)
 		this.cameras.main.startFollow(this.player, true, 0.25, 0.25)
+		// get the x coordinate of the camera and update the background's position so it follows the camera
 
 		//extend world physics	
         this.physics.world.setBounds(0, 0, window.innerWidth*2, window.innerHeight)
