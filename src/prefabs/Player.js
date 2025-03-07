@@ -2,10 +2,8 @@ class Player extends PhysicsObject {
     constructor(scene, x, y, group) {
         super(scene, x, y, "player", group); // Call Sprite parent class
 
-        // Setting Player's Physics
-        this.body.onCollide = true;
-		this.body.setCollideWorldBounds(true)
-        this.setGravityY(600); // Increase gravity for better jumping physics 600
+		this.setOrigin(1,1)
+		this.setScale(0.25)
 
         // Player Jump & Movement vars
         this.VEL = 200;
@@ -19,19 +17,6 @@ class Player extends PhysicsObject {
     }
 
     update() {
-        // Player movement
-        console.log(this.body.touching.down)
-        let direction = new Phaser.Math.Vector2(0);
-        
-        if (this.scene.leftKey.isDown) {
-            direction.x = -1;
-            this.setFlipX(true);
-        } else if (this.scene.rightKey.isDown) {
-            direction.x = 1;
-            this.setFlipX(false);
-        }
-
-        if (this.scene.upKey.isDown && this.body.touching.down) {
         // Player movement
 		       // Player movement
 		let direction = new Phaser.Math.Vector2(0);
