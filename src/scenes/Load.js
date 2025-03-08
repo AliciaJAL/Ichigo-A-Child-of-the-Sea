@@ -21,8 +21,8 @@ class Load extends Phaser.Scene {
         this.load.image('sand', './assets/SandTile.png')
 		this.load.image('greatWave', './assets/GreatWave.png')
         this.load.image('debris', './assets/debris.png')
-		
-		
+	
+
         // load spritesheet
         this.load.spritesheet('waveBackground', './assets/waveSheet.png', {
             frameHeight: 695,
@@ -30,8 +30,8 @@ class Load extends Phaser.Scene {
         })
 
 		// load audio
-		this.load.audio('greatWaveSFX', '/assets/oceanSFX.mp3')
-		this.load.audio('waveBackgroundSFX', '/assets/wavesSFX.mp3')
+		this.load.audio('greatWaveSFX', './assets/oceanSFX.mp3')
+		this.load.audio('waveBackgroundSFX', './assets/wavesSFX.mp3')
 
 
 			
