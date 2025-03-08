@@ -9,6 +9,7 @@ class Play extends Phaser.Scene {
     create() {
 		// Add wave to the background & adjust to screen
 		this.waveBackground = this.add.sprite(0, 0, "waveBackground").setOrigin(0.5, 0.5)
+		this.waveBackground.setScrollFactor(0);
 
 		this.anims.create({
 			key: 'waveBg',
@@ -30,17 +31,19 @@ class Play extends Phaser.Scene {
 
 		// Add elements and at the end add if in staticGroup or objects (non static)
 		this.sand = new Sand(this, window.innerWidth / 2, window.innerHeight - (window.innerHeight / 12), this.staticGroup)
-		this.crate1 = new Crate(this, window.innerWidth / 5, window.innerHeight - (window.innerHeight / 10), this.objects)
-		this.crate2 = new Crate(this, window.innerWidth / 3, window.innerHeight - (window.innerHeight / 10), this.objects)
-		this.crate3 = new Crate(this, window.innerWidth / 1.5, window.innerHeight- (window.innerHeight / 10), this.objects)
-		this.player = new Player(this, window.innerWidth / 10, window.innerHeight - (window.innerHeight / 10), this.objects)
+		//this.crate1 = new Crate(this, window.innerWidth / 5, window.innerHeight - (window.innerHeight / 6), this.objects)
+		this.crate2 = new Crate(this, window.innerWidth / 3, window.innerHeight - (window.innerHeight / 6), this.objects)
+		//this.crate3 = new Crate(this, window.innerWidth / 1.5, window.innerHeight- (window.innerHeight / 6), this.objects)
+		this.player = new Player(this, window.innerWidth / 10, window.innerHeight - (window.innerHeight / 6), this.objects)
 		this.wave = new Wave(this, -window.innerWidth, window.innerHeight,"greatWave", this.waveGroup)
+
+		this.debris = new Debris(this, window.innerWidth / 1.2, window.innerHeight - (window.innerHeight /3)+32, this.staticGroup)
 
 		// Add collisions to static and non static objects
 
 		// Check when objects like crates or the player collide with objects in this.staticGroup (like the sand)
 		this.physics.add.collider(this.staticGroup, this.objects, (ground, obj) => {
-			obj.setVelocityY(0)
+			//obj.setVelocityY(0)
 		
 		})
 		this.physics.add.collider(this.objects, this.objects, (obj1, obj2) => {})
@@ -49,17 +52,18 @@ class Play extends Phaser.Scene {
 			loop: false, 
 			detune: 0, // Ensures no pitch distortions
 			rate: 1,   // Default playback speed
-			volume: 1
+			volume: 0.3 //too loud!
 		});
 
 		this.physics.add.collider(this.player, this.waveGroup, (player, wave) => {
 			this.waveSFX.play()
+			this.scene.start('menuScene') //placeholder for what dying does
 		})
 
 
 		//camera
 		this.cameras.main.setBounds(0, 0, window.innerWidth*2, window.innerHeight)
-		this.cameras.main.startFollow(this.player, true, 0.25, 0.25)
+		this.cameras.main.startFollow(this.player, true, 1, 1)
 		// get the x coordinate of the camera and update the background's position so it follows the camera
 
 		//extend world physics	
@@ -77,7 +81,7 @@ class Play extends Phaser.Scene {
 			loop: true, 
 			detune: 0, // Ensures no pitch distortions
 			rate: 1,   // Default playback speed
-			volume: 1
+			volume: 0.1 //1.0 is WAY too loud holy
 		});
 
 		this.music.play()
@@ -88,6 +92,14 @@ class Play extends Phaser.Scene {
     update(time, dt) {
 		time /= 1000
 		dt /= 1000
+
+		// let counter = 0
+		// counter++
+		// console.log(counter)
+		// if (counter%10000==0){
+		// 	this.wave.x= -this.window.innerWidth
+		// }
+
 
 		// iterating over all the objects in this.objects
 		this.objects.getChildren().forEach(obj => {

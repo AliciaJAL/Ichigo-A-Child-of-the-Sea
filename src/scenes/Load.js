@@ -20,6 +20,7 @@ class Load extends Phaser.Scene {
 		this.load.image('crate', './assets/Crate.png')
         this.load.image('sand', './assets/SandTile.png')
 		this.load.image('greatWave', './assets/GreatWave.png')
+        this.load.image('debris', './assets/debris.png')
 		
 		
         // load spritesheet
@@ -38,6 +39,6 @@ class Load extends Phaser.Scene {
     }
 
     create() {
-        this.scene.start('playScene');
+        this.scene.start('menuScene');
     }
 }

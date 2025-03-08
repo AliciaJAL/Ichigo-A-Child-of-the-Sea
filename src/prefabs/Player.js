@@ -6,7 +6,7 @@ class Player extends PhysicsObject {
 		this.setScale(0.25)
 
         // Player Jump & Movement vars
-        this.VEL = 200;
+        this.VEL = 300;
         this.jumpHeight = -415; // Stronger jump force
 		
 
