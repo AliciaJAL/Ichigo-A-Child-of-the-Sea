@@ -13,8 +13,12 @@ let config = {
 			gravity: { y: 600 },  // Gravity applied to all physics objects
 			debug: true
 		},
+		scale: {
+			mode: Phaser.Scale.FIT,
+			autoCenter: Phaser.Scale.CENTER_BOTH,
+		},
 	},
-    scene: [Load, Menu, Play]
+    scene: [Load, Credits, Menu, Play]
 	
 }
 

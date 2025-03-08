@@ -74,20 +74,8 @@ class Play extends Phaser.Scene {
 
 		// Input keys
         this.upKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W)
-        // this.downKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S)
         this.leftKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A)
         this.rightKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D)
-
-
-		this.music = this.sound.add('waveBackgroundSFX', { 
-			loop: true, 
-			detune: 0, // Ensures no pitch distortions
-			rate: 1,   // Default playback speed
-			volume: 0.1 //1.0 is WAY too loud holy
-		});
-
-		this.music.play()
-		
 		
     }
 
