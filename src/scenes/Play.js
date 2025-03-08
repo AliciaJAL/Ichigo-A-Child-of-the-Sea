@@ -43,7 +43,9 @@ class Play extends Phaser.Scene {
 
 		// Check when objects like crates or the player collide with objects in this.staticGroup (like the sand)
 		this.physics.add.collider(this.staticGroup, this.objects, (ground, obj) => {
-			//obj.setVelocityY(0)
+			if (obj.body.blocked.down) {
+				obj.setVelocityY(0); // Stop downward movement only when touching the ground
+			}
 		
 		})
 		this.physics.add.collider(this.objects, this.objects, (obj1, obj2) => {})
