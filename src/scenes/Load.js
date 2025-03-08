@@ -30,8 +30,8 @@ class Load extends Phaser.Scene {
         })
 
 		// load audio
-		this.load.audio('greatWaveSFX', '/assets/ocean-waves-307501.mp3')
-		this.load.audio('waveBackgroundSFX', '/assets/sea-waves-7131.mp3')
+		this.load.audio('greatWaveSFX', '/assets/oceanSFX.mp3')
+		this.load.audio('waveBackgroundSFX', '/assets/wavesSFX.mp3')
 
 
 			
