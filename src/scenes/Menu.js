@@ -62,12 +62,12 @@ class Menu extends Phaser.Scene {
 	
 		this.music.play()
 
-        this.upKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W)
+        this.startKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
 		this.creditsKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C)
     }
 
     update() {
-        if (Phaser.Input.Keyboard.JustDown(this.upKey)) {      
+        if (Phaser.Input.Keyboard.JustDown(this.startKey)) {      
           this.scene.start('playScene')    
         }
 		if (Phaser.Input.Keyboard.JustDown(this.creditsKey)) {      
