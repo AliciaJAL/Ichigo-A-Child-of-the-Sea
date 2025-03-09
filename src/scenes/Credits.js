@@ -22,11 +22,11 @@ class Credits extends Phaser.Scene {
         this.add.text(game.config.width/2, game.config.height/2+30, 'PARKER LANUM: Sound, Programming, & Design', menuConfig).setOrigin(0.5)
         this.add.text(game.config.width/2, game.config.height/2+60, 'All sounds from Pixabay', menuConfig).setOrigin(0.5)
 		this.add.text(game.config.width/2, game.config.height/2+90, 'Press SPACE to go BACK', menuConfig).setOrigin(0.5)
-        this.upKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W)
+        this.backKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
     }
 
     update() {
-        if (Phaser.Input.Keyboard.JustDown(this.upKey)) {      
+        if (Phaser.Input.Keyboard.JustDown(this.backKey)) {      
           this.scene.start('menuScene')    
         }
     }
