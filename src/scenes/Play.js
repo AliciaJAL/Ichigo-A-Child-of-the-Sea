@@ -64,6 +64,7 @@ class Play extends Phaser.Scene {
 
 
 		//camera
+		//MAKE THIS FLAT NUMS
 		this.cameras.main.setBounds(0, 0, window.innerWidth*2, window.innerHeight)
 		this.cameras.main.startFollow(this.player, true, 1, 1)
 		// get the x coordinate of the camera and update the background's position so it follows the camera
