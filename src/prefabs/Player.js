@@ -2,12 +2,12 @@ class Player extends PhysicsObject {
     constructor(scene, x, y, group) {
         super(scene, x, y, "player", group); // Call Sprite parent class
 
-		this.setOrigin(1,1)
-		this.setScale(0.25)
+		this.setScale((window.innerHeight/this.height)/6)
+		this.setOrigin(0,1)
 
         // Player Jump & Movement vars
         this.VEL = 300;
-        this.jumpHeight = -415; // Stronger jump force
+        this.jumpHeight = -(this.displayHeight*2.3); // Stronger jump force
 		
 
 		// Adjust the physics body size to be smaller

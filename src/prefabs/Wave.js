@@ -3,7 +3,7 @@ class Wave extends PhysicsObject {
 		super(scene, x, y, texture, group) // call Sprite parent class
 
 		this.setOrigin(1, 1)
-		this.setDisplaySize(window.innerWidth*(2833/2015))/5, (window.innerHeight*(2833/2015)/5)
+		this.setScale(0.3)
 
 		// this.scene.physics.world.enable(this)
 		// Set Physics Body 
@@ -17,6 +17,5 @@ class Wave extends PhysicsObject {
 
 	update() {
 		this.setVelocityX(500)
-		console.log(this.x,this.y)
 	}
 }
