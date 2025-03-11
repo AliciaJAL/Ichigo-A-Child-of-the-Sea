@@ -2,8 +2,8 @@ class Wave extends PhysicsObject {
 	constructor(scene, x, y, texture = "greatWave", group) {
 		super(scene, x, y, texture, group) // call Sprite parent class
 
-		this.setOrigin(1, 1)
-		this.setScale(0.3)
+		this.setScale((window.innerHeight/this.height)/2.2)
+		this.setOrigin(0, 1)
 
 		// this.scene.physics.world.enable(this)
 		// Set Physics Body 
@@ -16,6 +16,6 @@ class Wave extends PhysicsObject {
 	}
 
 	update() {
-		this.setVelocityX(500)
+		this.setVelocityX(1500)
 	}
 }

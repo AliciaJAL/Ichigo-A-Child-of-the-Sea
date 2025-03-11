@@ -30,14 +30,16 @@ class Play extends Phaser.Scene {
 		this.waveGroup = this.physics.add.group()
 
 		// Add elements and at the end add if in staticGroup or objects (non static)
-		this.sand = new Sand(this, window.innerWidth / 2, window.innerHeight - (window.innerHeight / 12), this.staticGroup)
-		//this.crate1 = new Crate(this, window.innerWidth / 5, window.innerHeight - (window.innerHeight / 6), this.objects)
-		this.crate2 = new Crate(this, window.innerWidth / 3, window.innerHeight - (window.innerHeight / 6), this.objects)
-		//this.crate3 = new Crate(this, window.innerWidth / 1.5, window.innerHeight- (window.innerHeight / 6), this.objects)
-		this.player = new Player(this, window.innerWidth / 10, window.innerHeight - (window.innerHeight / 6), this.objects)
-		this.wave = new Wave(this, -window.innerWidth, window.innerHeight,"greatWave", this.waveGroup)
+		this.sand = new Sand(this, 0, window.innerHeight - (window.innerHeight / 12), this.staticGroup)
 
-		this.debris = new Debris(this, window.innerWidth / 1.2, window.innerHeight - (window.innerHeight /3)+32, this.staticGroup)
+		//this.crate1 = new Crate(this, window.innerWidth / 5, window.innerHeight - (window.innerHeight / 6), this.objects)
+		this.crate2 = new Crate(this, 800, window.innerHeight - (window.innerHeight / 6), this.objects)
+		//this.crate3 = new Crate(this, window.innerWidth / 1.5, window.innerHeight- (window.innerHeight / 6), this.objects)
+		this.debris = new Debris(this, 1000,  window.innerHeight-this.sand.displayHeight, this.staticGroup)
+
+		this.player = new Player(this, 200, window.innerHeight - (window.innerHeight / 6), this.objects)
+		this.wave = new Wave(this, -6000, window.innerHeight,"greatWave", this.waveGroup)
+
 
 		// Add collisions to static and non static objects
 
@@ -64,32 +66,30 @@ class Play extends Phaser.Scene {
 
 
 		//camera
-		//MAKE THIS FLAT NUMS
-		this.cameras.main.setBounds(0, 0, window.innerWidth*2, window.innerHeight)
+		this.cameras.main.setBounds(0, 0, 20000, window.innerHeight)
 		this.cameras.main.startFollow(this.player, true, 1, 1)
 		// get the x coordinate of the camera and update the background's position so it follows the camera
 
 		//extend world physics	
-        this.physics.world.setBounds(0, 0, window.innerWidth*2, window.innerHeight)
+        this.physics.world.setBounds(0, 0, 20000, window.innerHeight)
 	
 
 		// Input keys
         this.upKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W)
         this.leftKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A)
         this.rightKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D)
-		
+		this.counter=0
     }
 
     update(time, dt) {
 		time /= 1000
 		dt /= 1000
-
-		// let counter = 0
-		// counter++
-		// console.log(counter)
-		// if (counter%10000==0){
-		// 	this.wave.x= -this.window.innerWidth
-		// }
+		//console.log(this.player.x)
+		this.counter++
+		console.log(this.counter)
+		if (this.counter%4000==0){
+			this.wave.x= -6000
+		}
 
 
 		// iterating over all the objects in this.objects
@@ -98,7 +98,7 @@ class Play extends Phaser.Scene {
 		});	
 		
 		this.wave.update()
-		
+		this.sand.update()
 		
 	}		
 }
