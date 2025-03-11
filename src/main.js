@@ -1,3 +1,6 @@
+// Name: Parker Lanum & Alicia Landa
+// Major Phaser Components: physics systems, cameras, text objects, the animation manager, timer
+
 let config = {
     type: Phaser.AUTO,
 	width: window.innerWidth,  // Dynamically set to the window size

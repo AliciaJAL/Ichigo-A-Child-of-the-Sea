@@ -9,7 +9,7 @@ class Play extends Phaser.Scene {
     create() {
 		// Add wave to the background & adjust to screen
 		this.waveBackground = this.add.sprite(0, 0, "waveBackground").setOrigin(0.5, 0.5)
-		this.waveBackground.setScrollFactor(0);
+		this.waveBackground.setScrollFactor(0)
 
 		this.anims.create({
 			key: 'waveBg',
@@ -79,11 +79,27 @@ class Play extends Phaser.Scene {
         this.leftKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A)
         this.rightKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D)
 		this.counter=0
+
+		
+		// Create Timer
+		this.timerText = this.add.text(window.innerWidth-50, 20, 'TIME: 60', {
+			fontSize: `${window.innerWidth * 0.02}px`,
+			fill: '#000000',
+			fontFamily: 'Pacifico, cursive'
+		}).setOrigin(1, 0).setScrollFactor(0); // Align text to top-right corner
+		
+		this.elapsedTime = 60; // Initialize timer
+		
     }
 
     update(time, dt) {
 		time /= 1000
 		dt /= 1000
+
+		// Update Timer
+		this.elapsedTime -= dt; // Convert from milliseconds to seconds
+		this.timerText.setText('TIME: ' + Math.round(this.elapsedTime))
+
 		//console.log(this.player.x)
 		this.counter++
 		console.log(this.counter)
