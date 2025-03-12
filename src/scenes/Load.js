@@ -28,7 +28,10 @@ class Load extends Phaser.Scene {
 		this.load.image('warningSigns', './assets/warningSigns.png')
 		this.load.image('mechSign', './assets/mechanicSign.png')
 	
-
+		// game over assets
+		this.load.image('playerDeath', './assets/playerDeath.png')
+		this.load.image('shadow', './assets/Shadow.png')
+		this.load.image('gameOver', './assets/GameOverText.png')
         // load spritesheet
         this.load.spritesheet('waveBackground', './assets/waveSheet.png', {
             frameHeight: 695,
@@ -44,6 +47,6 @@ class Load extends Phaser.Scene {
     }
 
     create() {
-        this.scene.start('menuScene');
+        this.scene.start('menuScene')
     }
 }

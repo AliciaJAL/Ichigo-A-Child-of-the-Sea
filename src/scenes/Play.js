@@ -38,6 +38,9 @@ class Play extends Phaser.Scene {
 		this.debris = new Debris(this, 1000,  window.innerHeight-this.sand.displayHeight, this.staticGroup)
 
 		this.player = new Player(this, 200, window.innerHeight - (window.innerHeight / 6), this.objects)
+
+		this.warningSigns = this.add.sprite(0,0,'warningSigns').setPosition(window.innerWidth-(window.innerWidth-100), this.player.y-25).setScale(0.3)
+
 		this.wave = new Wave(this, -6000, window.innerHeight,"greatWave", this.waveGroup)
 
 
@@ -61,7 +64,7 @@ class Play extends Phaser.Scene {
 
 		this.physics.add.collider(this.player, this.waveGroup, (player, wave) => {
 			this.waveSFX.play()
-			this.scene.start('menuScene') //placeholder for what dying does
+			this.scene.start('gameOverScene') 
 		})
 
 
