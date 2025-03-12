@@ -21,7 +21,7 @@ let config = {
 			autoCenter: Phaser.Scale.CENTER_BOTH,
 		},
 	},
-    scene: [Load, Credits, Menu, Play,GameOver]
+    scene: [Load, Credits, Win, Menu, Play,GameOver]
 	
 }
 

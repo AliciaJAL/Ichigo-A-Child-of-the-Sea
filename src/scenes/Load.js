@@ -32,6 +32,13 @@ class Load extends Phaser.Scene {
 		this.load.image('playerDeath', './assets/playerDeath.png')
 		this.load.image('shadow', './assets/Shadow.png')
 		this.load.image('gameOver', './assets/GameOverText.png')
+
+		// win screen assests
+		this.load.image('floor', './assets/Floor.png')
+		this.load.image('door', './assets/Door.png')
+		this.load.image('door2', './assets/Door2.png')
+		this.load.image('futon', './assets/Futon.png')
+
         // load spritesheet
         this.load.spritesheet('waveBackground', './assets/waveSheet.png', {
             frameHeight: 695,
