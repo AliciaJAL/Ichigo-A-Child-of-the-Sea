@@ -37,8 +37,8 @@ class Play extends Phaser.Scene {
 		this.sandSprite.setPosition(0, window.innerHeight)
 		this.sandSprite.setScrollFactor(0)
 
-		//this.crate1 = new Crate(this, window.innerWidth / 5, window.innerHeight - (window.innerHeight / 6), this.objects)
-		this.crate2 = new Crate(this, 800, window.innerHeight - (window.innerHeight / 6), this.objects)
+		//this.crate2 = new Crate(this, window.innerWidth / 5, window.innerHeight - (window.innerHeight / 6), this.objects)
+		this.crate1 = new Crate(this, 350, window.innerHeight - (window.innerHeight / 6), this.objects)
 		//this.crate3 = new Crate(this, window.innerWidth / 1.5, window.innerHeight- (window.innerHeight / 6), this.objects)
 		this.debris = new Debris(this, 1000,  window.innerHeight-this.sand.displayHeight, this.staticGroup)
 
