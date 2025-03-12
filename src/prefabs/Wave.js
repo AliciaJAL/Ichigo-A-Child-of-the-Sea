@@ -13,9 +13,11 @@ class Wave extends PhysicsObject {
         // Physics Properties
         this.body.allowGravity = false
         this.setCollideWorldBounds(false) 
+		this.setVelocityX(1500)
+
     }
 
     update() {
-        this.setVelocityX(1500)
+		
     }
 }
