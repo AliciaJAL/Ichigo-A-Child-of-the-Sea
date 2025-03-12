@@ -26,7 +26,9 @@ class Menu extends Phaser.Scene {
 	
 		this.staticGroup = this.physics.add.staticGroup()	
 		
-		this.sand = new Sand(this, window.innerWidth / 2, window.innerHeight - (window.innerHeight / 12), this.staticGroup)
+		this.sand = this.add.sprite(0, 0, "sand").setOrigin(0, 1)
+		this.sand.setDisplaySize(window.innerWidth, window.innerHeight/6)
+		this.sand.setPosition(0, window.innerHeight)
 			
 		/*	this.physics.add.collider(this.staticGroup, this.objects, (ground, obj) => {
 				if (obj.body.blocked.down) {
@@ -36,6 +38,7 @@ class Menu extends Phaser.Scene {
 			})
 		*/
 		
+
 		this.title = this.add.sprite(0, 0, "title").setOrigin(0.5, 0.5)
 		this.title.setDisplaySize(window.innerWidth*(2089/1067)/4, window.innerHeight*(2089/1067)/4)
 		this.title.setPosition(window.innerWidth / 2, window.innerHeight / 4)

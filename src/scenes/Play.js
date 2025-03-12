@@ -32,6 +32,11 @@ class Play extends Phaser.Scene {
 		// Add elements and at the end add if in staticGroup or objects (non static)
 		this.sand = new Sand(this, 0, window.innerHeight - (window.innerHeight / 12), this.staticGroup)
 
+		this.sandSprite = this.add.sprite(0, 0, "sand").setOrigin(0, 1)
+		this.sandSprite.setDisplaySize(window.innerWidth, window.innerHeight/6)
+		this.sandSprite.setPosition(0, window.innerHeight)
+		this.sandSprite.setScrollFactor(0)
+
 		//this.crate1 = new Crate(this, window.innerWidth / 5, window.innerHeight - (window.innerHeight / 6), this.objects)
 		this.crate2 = new Crate(this, 800, window.innerHeight - (window.innerHeight / 6), this.objects)
 		//this.crate3 = new Crate(this, window.innerWidth / 1.5, window.innerHeight- (window.innerHeight / 6), this.objects)
@@ -64,7 +69,7 @@ class Play extends Phaser.Scene {
 
 		this.physics.add.collider(this.player, this.waveGroup, (player, wave) => {
 			this.waveSFX.play()
-			this.scene.start('gameOverScene') 
+			this.scene.start('gameOverScene')
 		})
 
 
