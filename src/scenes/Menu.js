@@ -66,6 +66,7 @@ class Menu extends Phaser.Scene {
 		this.music.play()
 
         this.startKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
+		this.winKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W)
 		this.creditsKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C)
     }
 
@@ -75,6 +76,10 @@ class Menu extends Phaser.Scene {
         }
 		if (Phaser.Input.Keyboard.JustDown(this.creditsKey)) {      
 			this.scene.start('creditsScene')    
+		  }
+
+		if (Phaser.Input.Keyboard.JustDown(this.winKey)) {      
+			this.scene.start('winScene')    
 		  }
     }
 }

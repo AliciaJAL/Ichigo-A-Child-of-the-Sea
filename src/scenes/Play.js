@@ -108,6 +108,10 @@ class Play extends Phaser.Scene {
 		this.elapsedTime -= dt; // Convert from milliseconds to seconds
 		this.timerText.setText('TIME: ' + Math.round(this.elapsedTime))
 
+		if (this.elapsedTime <= 0) {
+			this.scene.start('gameOverScene') 
+		}
+
 		if (Math.round(this.elapsedTime)%10==6){
 			this.wave.x= this.cameras.main.scrollX-1000
 		}
