@@ -39,7 +39,8 @@ class Play extends Phaser.Scene {
 
 		this.player = new Player(this, 200, window.innerHeight - (window.innerHeight / 6), this.objects)
 
-		this.warningSigns = this.add.sprite(0,0,'warningSigns').setPosition(window.innerWidth-(window.innerWidth-100), this.player.y-25).setScale(0.3)
+		this.warningSigns = this.add.sprite(0,0,'warningSigns').setPosition(window.innerWidth-(window.innerWidth-100), this.player.y-25)
+		this.warningSigns.setDisplaySize((window.innerWidth*(546/650))/6, (window.innerHeight*(546/650))/3)
 
 		this.wave = new Wave(this, -6000, window.innerHeight,"greatWave", this.waveGroup)
 
