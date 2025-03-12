@@ -22,7 +22,7 @@ class Player extends PhysicsObject {
 		let direction = new Phaser.Math.Vector2(0);
 		
         if (this.scene.upKey.isDown && this.body.blocked.down) {
-            this.setVelocityY(this.jumpHeight )
+            this.setVelocityY(this.jumpHeight)
         }
 
         this.setVelocityX(this.VEL * direction.x);
