@@ -28,6 +28,7 @@ class Play extends Phaser.Scene {
 		this.objects = this.physics.add.group()	 // Creates a dynamic physic group
 		this.staticGroup = this.physics.add.staticGroup()	// Defining static group for static objects like ground and platforms
 		this.waveGroup = this.physics.add.group()
+		// this.crabGroup = this.physics.add.group()
 
 		// Add elements and at the end add if in staticGroup or objects (non static)
 		this.sand = new Sand(this, 0, window.innerHeight - (window.innerHeight / 12), this.staticGroup)
@@ -42,9 +43,54 @@ class Play extends Phaser.Scene {
 		//this.crate3 = new Crate(this, window.innerWidth / 1.5, window.innerHeight- (window.innerHeight / 6), this.objects)
 		this.debris = new Debris(this, 1000,  window.innerHeight-this.sand.displayHeight, this.staticGroup)
 
+		this.anims.create({
+			key: 'idle',
+			frameRate: 0,
+			repeat: -1, //this repeats infinitly
+			frames: this.anims.generateFrameNumbers('player', {
+				start: 0,
+				end: 0
+			})
+
+		})
+
+		this.anims.create({
+			key: 'walking',
+			frameRate: 5,
+			repeat: -1, //this repeats infinitly
+			frames: this.anims.generateFrameNumbers('player', {
+				start: 1,
+				end: 6
+			})
+
+		})
+
 		this.player = new Player(this, 200, window.innerHeight - (window.innerHeight / 6), this.objects)
 
-		this.warningSigns = this.add.sprite(0,0,'warningSigns').setPosition(window.innerWidth-(window.innerWidth-100), this.player.y-25).setScale(0.3)
+		this.warningSigns = this.add.sprite(0,0,'warningSigns').setPosition(window.innerWidth-(window.innerWidth-100), this.player.y-25)
+		this.warningSigns.setDisplaySize((window.innerWidth*(546/650))/6, (window.innerHeight*(546/650))/3)
+
+		this.anims.create({
+			key: 'redCrabWalk',
+			frameRate: 5,
+			repeat: -1, //this repeats infinitly
+			frames: this.anims.generateFrameNumbers('redCrab', {
+				start: 0,
+				end: 3			})
+
+		})
+
+		this.anims.create({
+			key: 'purpleCrabWalk',
+			frameRate: 5,
+			repeat: -1, //this repeats infinitly
+			frames: this.anims.generateFrameNumbers('purpleCrab', {
+				start: 0,
+				end: 3			})
+
+		})
+		this.redCrab = new Crab(this, 700, window.innerHeight - (window.innerHeight / 6),'redCrab', this.objects)
+
 
 		this.wave = new Wave(this, -6000, window.innerHeight,"greatWave", this.waveGroup)
 

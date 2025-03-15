@@ -29,10 +29,13 @@ class Player extends PhysicsObject {
 
 		if (this.scene.leftKey.isDown) {
 			this.setVelocityX(-this.VEL)  // Supppose make sure the leftward velocity is smooth
+			this.play('walking', true)
 		} else if (this.scene.rightKey.isDown) {
 			this.setVelocityX(this.VEL)  // Handle rightward velocity
+			this.play('walking', true)
 		}else{
 			this.setVelocityX(0)
+			this.play('idle', true)
 		}
 
 		// Round the position to avoid subpixel movement causing jitter

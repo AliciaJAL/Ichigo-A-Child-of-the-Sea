@@ -20,7 +20,7 @@ class GameOver extends Phaser.Scene {
 	    this.text.setScale((window.innerHeight/271)/5)
 		this.text.setPosition(window.innerWidth / 2, window.innerHeight / 4)
 
-		this.wave = new Wave(this, -4000, window.innerHeight,"greatWave", this.waveGroup).setScale(0.3).setVelocityX(1500)
+		this.wave = new Wave(this, -6000, window.innerHeight,"greatWave", this.waveGroup).setScale(0.3)
 
 		
         this.backKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
