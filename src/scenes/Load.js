@@ -16,7 +16,7 @@ class Load extends Phaser.Scene {
         });
 
         // load images/tile sprites
-        this.load.image('player', './assets/player.png')
+        // this.load.image('player', './assets/player.png')
 		this.load.image('crate', './assets/Crate.png')
         this.load.image('sand', './assets/SandTile.png')
 		this.load.image('greatWave', './assets/GreatWave.png')
@@ -43,6 +43,21 @@ class Load extends Phaser.Scene {
         this.load.spritesheet('waveBackground', './assets/waveSheet.png', {
             frameHeight: 695,
 			frameWidth: 905
+        })
+
+		this.load.spritesheet('player', './assets/playerSheet.png', {
+            frameHeight: 700,
+			frameWidth: 500
+        })
+
+		this.load.spritesheet('redCrab', './assets/redCrab.png', {
+            frameHeight: 512,
+			frameWidth: 512
+        })
+
+		this.load.spritesheet('purpleCrab', './assets/purpleCrab.png', {
+            frameHeight: 512,
+			frameWidth: 512
         })
 
 		// load audio

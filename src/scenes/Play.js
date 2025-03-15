@@ -37,10 +37,44 @@ class Play extends Phaser.Scene {
 		//this.crate3 = new Crate(this, window.innerWidth / 1.5, window.innerHeight- (window.innerHeight / 6), this.objects)
 		this.debris = new Debris(this, 1000,  window.innerHeight-this.sand.displayHeight, this.staticGroup)
 
+		this.anims.create({
+			key: 'idle',
+			frameRate: 0,
+			repeat: -1, //this repeats infinitly
+			frames: this.anims.generateFrameNumbers('player', {
+				start: 0,
+				end: 0
+			})
+
+		})
+
+		this.anims.create({
+			key: 'walking',
+			frameRate: 5,
+			repeat: -1, //this repeats infinitly
+			frames: this.anims.generateFrameNumbers('player', {
+				start: 1,
+				end: 6
+			})
+
+		})
+
 		this.player = new Player(this, 200, window.innerHeight - (window.innerHeight / 6), this.objects)
 
 		this.warningSigns = this.add.sprite(0,0,'warningSigns').setPosition(window.innerWidth-(window.innerWidth-100), this.player.y-25)
 		this.warningSigns.setDisplaySize((window.innerWidth*(546/650))/6, (window.innerHeight*(546/650))/3)
+
+		this.anims.create({
+			key: 'redCrabWalk',
+			frameRate: 3,
+			repeat: -1, //this repeats infinitly
+			frames: this.anims.generateFrameNumbers('redCrab', {
+				start: 0,
+				end: 3			})
+
+		})
+		this.redCrab = new Crate(this, 800, window.innerHeight - (window.innerHeight / 12), this.objects)
+
 
 		this.wave = new Wave(this, -6000, window.innerHeight,"greatWave", this.waveGroup)
 
