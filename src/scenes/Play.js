@@ -28,6 +28,7 @@ class Play extends Phaser.Scene {
 		this.objects = this.physics.add.group()	 // Creates a dynamic physic group
 		this.staticGroup = this.physics.add.staticGroup()	// Defining static group for static objects like ground and platforms
 		this.waveGroup = this.physics.add.group()
+		// this.crabGroup = this.physics.add.group()
 
 		// Add elements and at the end add if in staticGroup or objects (non static)
 		this.sand = new Sand(this, 0, window.innerHeight - (window.innerHeight / 12), this.staticGroup)
@@ -66,14 +67,24 @@ class Play extends Phaser.Scene {
 
 		this.anims.create({
 			key: 'redCrabWalk',
-			frameRate: 3,
+			frameRate: 5,
 			repeat: -1, //this repeats infinitly
 			frames: this.anims.generateFrameNumbers('redCrab', {
 				start: 0,
 				end: 3			})
 
 		})
-		this.redCrab = new Crate(this, 800, window.innerHeight - (window.innerHeight / 12), this.objects)
+
+		this.anims.create({
+			key: 'purpleCrabWalk',
+			frameRate: 5,
+			repeat: -1, //this repeats infinitly
+			frames: this.anims.generateFrameNumbers('purpleCrab', {
+				start: 0,
+				end: 3			})
+
+		})
+		this.redCrab = new Crab(this, 700, window.innerHeight - (window.innerHeight / 6),'redCrab', this.objects)
 
 
 		this.wave = new Wave(this, -6000, window.innerHeight,"greatWave", this.waveGroup)
