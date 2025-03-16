@@ -38,10 +38,20 @@ class Play extends Phaser.Scene {
 		this.sandSprite.setPosition(0, window.innerHeight)
 		this.sandSprite.setScrollFactor(0)
 
-		//this.crate2 = new Crate(this, window.innerWidth / 5, window.innerHeight - (window.innerHeight / 6), this.objects)
-		this.crate1 = new Crate(this, 350, window.innerHeight - (window.innerHeight / 6), this.objects)
-		//this.crate3 = new Crate(this, window.innerWidth / 1.5, window.innerHeight- (window.innerHeight / 6), this.objects)
-		this.debris = new Debris(this, 1000,  window.innerHeight-this.sand.displayHeight, this.staticGroup)
+		this.crate1 = new Crate(this, 650, window.innerHeight - (window.innerHeight / 6), this.objects)
+		this.crab1 = new Crab(this, 450, window.innerHeight - (window.innerHeight / 6),'redCrab', this.objects)
+		this.debris1 = new Debris(this, 1200,  window.innerHeight-this.sand.displayHeight, this.staticGroup)
+		this.crate3 = new Crate(this, 2000, window.innerHeight - (window.innerHeight / 6), this.objects)
+		this.crab2 = new Crab(this, 2200, window.innerHeight - (window.innerHeight / 6),'purpleCrab', this.objects)
+		this.crate3 = new Crate(this, 2350, window.innerHeight - (window.innerHeight / 6), this.objects)
+		this.debris2 = new Debris(this, 3800,  window.innerHeight-this.sand.displayHeight, this.staticGroup)
+		this.crate4 = new Crate(this, 4600, window.innerHeight - (window.innerHeight / 6), this.objects)
+		this.crate5 = new Crate(this, 4800, window.innerHeight - (window.innerHeight / 6), this.objects)
+		this.crate6 = new Crate(this, 4800, window.innerHeight - (window.innerHeight / 6)-this.crate1.height, this.objects)
+
+
+
+
 
 		this.anims.create({
 			key: 'idle',
@@ -89,10 +99,9 @@ class Play extends Phaser.Scene {
 				end: 3			})
 
 		})
-		this.redCrab = new Crab(this, 700, window.innerHeight - (window.innerHeight / 6),'redCrab', this.objects)
 
 
-		this.wave = new Wave(this, -6000, window.innerHeight,"greatWave", this.waveGroup)
+		this.wave = new Wave(this, 6000, window.innerHeight,"greatWave", this.waveGroup)
 
 
 		// Add collisions to static and non static objects
@@ -110,11 +119,10 @@ class Play extends Phaser.Scene {
 			loop: false, 
 			detune: 0, // Ensures no pitch distortions
 			rate: 1,   // Default playback speed
-			volume: 0.3 //too loud!
+			volume: 0.7 //too loud!
 		});
 
 		this.physics.add.collider(this.player, this.waveGroup, (player, wave) => {
-			this.waveSFX.play()
 			this.scene.start('gameOverScene')
 		})
 
@@ -136,13 +144,20 @@ class Play extends Phaser.Scene {
 
 		
 		// Create Timer
-		this.timerText = this.add.text(window.innerWidth-50, 20, 'TIME: 60', {
+		this.timerText = this.add.text(window.innerWidth-50, 20, 'TIME: 0', {
 			fontSize: `${window.innerWidth * 0.02}px`,
 			fill: '#000000',
 			fontFamily: 'Pacifico, cursive'
 		}).setOrigin(1, 0).setScrollFactor(0); // Align text to top-right corner
 		
-		this.elapsedTime = 60; // Initialize timer
+		this.elapsedTime = 0; // Initialize timer
+
+		//TEMPORARY COUNTDOWN
+		this.countdownText = this.add.text(window.innerWidth/2, 20, 'WAVE COMING IN: 10', {
+			fontSize: `${window.innerWidth * 0.03}px`,
+			fill: '#000000',
+			fontFamily: 'Pacifico, cursive'
+		}).setOrigin(0.5, 0).setScrollFactor(0); // Align text to topmiddle corner
 		
     }
 
@@ -151,14 +166,25 @@ class Play extends Phaser.Scene {
 		dt /= 1000
 
 		// Update Timer
-		this.elapsedTime -= dt; // Convert from milliseconds to seconds
+		this.elapsedTime += dt; // Convert from milliseconds to seconds
 		this.timerText.setText('TIME: ' + Math.round(this.elapsedTime))
 
-		if (this.elapsedTime <= 0) {
-			this.scene.start('gameOverScene') 
+		// Update countdown
+		this.countdownText.setText('WAVE COMING IN: ' + (10-Math.round(this.elapsedTime)%10))
+		if (10-Math.round(this.elapsedTime)%10<4){
+			this.countdownText.setFontSize( `${window.innerWidth * 0.04}px`)
+			this.countdownText.setFill('#ff0000')
+		}else{
+			this.countdownText.setFontSize( `${window.innerWidth * 0.03}px`)
+			this.countdownText.setFill('#000000')
 		}
 
-		if (Math.round(this.elapsedTime)%10==6){
+		// if (this.elapsedTime <= 0) {
+		// 	this.scene.start('gameOverScene') 
+		// }
+
+		if (Math.round(this.elapsedTime)%10==9){
+			this.waveSFX.play()
 			this.wave.x= this.cameras.main.scrollX-1000
 		}
 
@@ -166,10 +192,6 @@ class Play extends Phaser.Scene {
 		// iterating over all the objects in this.objects
 		this.objects.getChildren().forEach(obj => {
 			obj.update(time, dt)
-		});	
-		
-		this.wave.update()
-		this.sand.update()
-		
+		});			
 	}		
 }

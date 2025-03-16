@@ -5,17 +5,18 @@ class Crab extends PhysicsObject {
 		this.setOrigin(0, 1)
 
 			// Set crab movement speed
-			this.speed = 100;  
+			this.speed = 150;  
 
 			// Define movement range
 			this.startX = x;  // Initial position
-			this.range = this.width*2; // Distance the crab can move
+			this.range = this.width; // Distance the crab can move
 	
 			// Move left initially
 			this.setVelocityX(-this.speed);
 		}
 	
 	update() {
+
 		// Check if crab has moved out of its range
 		if (this.x <= this.startX - this.range) {
 			this.setVelocityX(this.speed);  // Move right
@@ -24,6 +25,9 @@ class Crab extends PhysicsObject {
 		else if (this.x >= this.startX + this.range) {
 			this.setVelocityX(-this.speed); // Move left
 			this.setFlipX(true); // Face left
+		}
+		if ((this.body.velocity.x > 0 && this.body.velocity.x <this.speed) ||(this.body.velocity.x < 0 && this.body.velocity.x > -this.speed) ){
+			this.setVelocityX(this.body.velocity.x+5)
 		}
 
 		if (this.texture.key == 'redCrab') {
