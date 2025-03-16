@@ -32,11 +32,18 @@ class Play extends Phaser.Scene {
 
 		// Add elements and at the end add if in staticGroup or objects (non static)
 		this.sand = new Sand(this, 0, window.innerHeight - (window.innerHeight / 12), this.staticGroup)
+		this.sandUpper = new Sand(this, 4700, window.innerHeight - this.sand.height*10, this.staticGroup)
+		this.sandUpper.body.setSize(40, this.sandUpper.height*(1.7))
+		this.sandUpper.body.setImmovable(true)
 
 		this.sandSprite = this.add.sprite(0, 0, "sand").setOrigin(0, 1)
 		this.sandSprite.setDisplaySize(window.innerWidth, window.innerHeight/6)
 		this.sandSprite.setPosition(0, window.innerHeight)
 		this.sandSprite.setScrollFactor(0)
+
+		this.sandUpperSprite = this.add.sprite(0, 0, "sand").setOrigin(0, 1)
+		this.sandUpperSprite.setDisplaySize(2000, window.innerHeight/6)
+		this.sandUpperSprite.setPosition(4600, window.innerHeight - (window.innerHeight / 7))
 
 		this.crate1 = new Crate(this, 650, window.innerHeight - (window.innerHeight / 6), this.objects)
 		this.crab1 = new Crab(this, 450, window.innerHeight - (window.innerHeight / 6),'redCrab', this.objects)
@@ -45,9 +52,12 @@ class Play extends Phaser.Scene {
 		this.crab2 = new Crab(this, 2200, window.innerHeight - (window.innerHeight / 6),'purpleCrab', this.objects)
 		this.crate3 = new Crate(this, 2350, window.innerHeight - (window.innerHeight / 6), this.objects)
 		this.debris2 = new Debris(this, 3800,  window.innerHeight-this.sand.displayHeight, this.staticGroup)
-		this.crate4 = new Crate(this, 4600, window.innerHeight - (window.innerHeight / 6), this.objects)
-		this.crate5 = new Crate(this, 4800, window.innerHeight - (window.innerHeight / 6), this.objects)
+		//this.crate4 = new Crate(this, 4600, window.innerHeight - (window.innerHeight / 6), this.objects)
+		//this.crate5 = new Crate(this, 4800, window.innerHeight - (window.innerHeight / 6), this.objects)
 		this.crate6 = new Crate(this, 4800, window.innerHeight - (window.innerHeight / 6)-this.crate1.height, this.objects)
+		this.debris3 = new Debris(this, 7000,  window.innerHeight-this.sand.displayHeight, this.staticGroup)
+
+
 
 
 
@@ -164,6 +174,8 @@ class Play extends Phaser.Scene {
     update(time, dt) {
 		time /= 1000
 		dt /= 1000
+
+		console.log(this.player.x)
 
 		// Update Timer
 		this.elapsedTime += dt; // Convert from milliseconds to seconds
