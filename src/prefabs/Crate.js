@@ -7,6 +7,6 @@ class Crate extends PhysicsObject {
 	}
 
 	update() {
-		this.setVelocityX(this.body.velocity.x * 0.95)
+		this.setVelocityX(this.body.velocity.x * 0.5)
 	}
 }
