@@ -32,9 +32,15 @@ class Play extends Phaser.Scene {
 
 		// Add elements and at the end add if in staticGroup or objects (non static)
 		this.sand = new Sand(this, 0, window.innerHeight - (window.innerHeight / 12), this.staticGroup)
-		this.sandUpper = new Sand(this, 4700, window.innerHeight - this.sand.height*10, this.staticGroup)
-		this.sandUpper.body.setSize(40, this.sandUpper.height*(1.7))
-		this.sandUpper.body.setImmovable(true)
+
+		this.sandUpper = new Debris(this, 5100, window.innerHeight - (window.innerHeight / 36), this.staticGroup).setOffset(0,0)
+		this.sandUpper.setSize(1630, this.height)
+
+
+
+		this.sandUpper2 = new Debris(this, 7800, window.innerHeight - (window.innerHeight / 64), this.staticGroup).setOffset(0,0)
+		this.sandUpper2.setSize(1630, this.height)
+
 
 		this.sandSprite = this.add.sprite(0, 0, "sand").setOrigin(0, 1)
 		this.sandSprite.setDisplaySize(window.innerWidth, window.innerHeight/6)
@@ -45,18 +51,33 @@ class Play extends Phaser.Scene {
 		this.sandUpperSprite.setDisplaySize(2000, window.innerHeight/6)
 		this.sandUpperSprite.setPosition(4600, window.innerHeight - (window.innerHeight / 7))
 
+		
+		this.sandUpperSprite2 = this.add.sprite(0, 0, "sand").setOrigin(0, 1)
+		this.sandUpperSprite2.setDisplaySize(1600, window.innerHeight/6)
+		this.sandUpperSprite2.setPosition(7700, window.innerHeight - (window.innerHeight / 7))
+
 		this.crate1 = new Crate(this, 650, window.innerHeight - (window.innerHeight / 6), this.objects)
 		this.crab1 = new Crab(this, 450, window.innerHeight - (window.innerHeight / 6),'redCrab', this.objects)
 		this.debris1 = new Debris(this, 1200,  window.innerHeight-this.sand.displayHeight, this.staticGroup)
 		this.crate3 = new Crate(this, 2000, window.innerHeight - (window.innerHeight / 6), this.objects)
-		this.crab2 = new Crab(this, 2200, window.innerHeight - (window.innerHeight / 6),'purpleCrab', this.objects)
+		this.crab2 = new Crab(this, 2200, window.innerHeight - (window.innerHeight / 6),'redCrab', this.objects)
 		this.crate3 = new Crate(this, 2350, window.innerHeight - (window.innerHeight / 6), this.objects)
 		this.debris2 = new Debris(this, 3800,  window.innerHeight-this.sand.displayHeight, this.staticGroup)
-		//this.crate4 = new Crate(this, 4600, window.innerHeight - (window.innerHeight / 6), this.objects)
-		//this.crate5 = new Crate(this, 4800, window.innerHeight - (window.innerHeight / 6), this.objects)
+		this.crab3 = new Crab(this, 4900, window.innerHeight - (window.innerHeight / 6)-this.crate1.height,'purpleCrab', this.objects)
 		this.crate6 = new Crate(this, 4800, window.innerHeight - (window.innerHeight / 6)-this.crate1.height, this.objects)
 		this.debris3 = new Debris(this, 7000,  window.innerHeight-this.sand.displayHeight, this.staticGroup)
 
+		this.home = new Homer(this, 8730, window.innerHeight - (window.innerHeight / 4.2), this.staticGroup).setOrigin(0, 1)
+
+		this.crab4 = new Crab(this, 7900, window.innerHeight - (window.innerHeight / 6)-this.crate1.height,'purpleCrab', this.objects)
+		this.crate7 = new Crate(this, 8000, window.innerHeight - (window.innerHeight / 6)-this.crate1.height, this.objects)
+		this.debris4 = new Debris(this, 9500,  window.innerHeight-this.sand.displayHeight, this.staticGroup)
+		this.crate8 = new Crate(this, 9740, window.innerHeight - (window.innerHeight / 6)-this.crate1.height/2, this.objects)
+		this.crab5 = new Crab(this, 9900,  this.crate8.height,'purpleCrab', this.objects)
+
+		this.lowDebris = new Debris(this, 9300,  window.innerHeight-this.sand.displayHeight, this.staticGroup).setDisplaySize(200,(window.innerHeight / 32))
+
+		this.rightwall = new Debris(this, 10000,  window.innerHeight-this.sand.displayHeight*2.8, this.staticGroup).setOrigin(0, 1)
 
 
 
@@ -111,14 +132,14 @@ class Play extends Phaser.Scene {
 		})
 
 
-		this.wave = new Wave(this, 6000, window.innerHeight,"greatWave", this.waveGroup)
+		this.wave = new Wave(this, 10500, window.innerHeight,"greatWave", this.waveGroup)
 
 
 		// Add collisions to static and non static objects
 
 		// Check when objects like crates or the player collide with objects in this.staticGroup (like the sand)
 		this.physics.add.collider(this.staticGroup, this.objects, (ground, obj) => {
-			if (obj.body.blocked.down) {
+			if (obj.body.touching.down) {
 				obj.setVelocityY(0); // Stop downward movement only when touching the ground
 			}
 		
@@ -138,12 +159,12 @@ class Play extends Phaser.Scene {
 
 
 		//camera
-		this.cameras.main.setBounds(0, 0, 20000, window.innerHeight)
+		this.cameras.main.setBounds(0, 0, 10000, window.innerHeight)
 		this.cameras.main.startFollow(this.player, true, 1, 1)
 		// get the x coordinate of the camera and update the background's position so it follows the camera
 
 		//extend world physics	
-        this.physics.world.setBounds(0, 0, 20000, window.innerHeight)
+        this.physics.world.setBounds(0, 0, 11000, window.innerHeight)
 	
 
 		// Input keys
@@ -175,7 +196,10 @@ class Play extends Phaser.Scene {
 		time /= 1000
 		dt /= 1000
 
-		console.log(this.player.x)
+
+		if (this.player.y<410 && this.player.x<9130 && this.player.x>9000){
+			this.scene.start('winScene')    
+		}
 
 		// Update Timer
 		this.elapsedTime += dt; // Convert from milliseconds to seconds

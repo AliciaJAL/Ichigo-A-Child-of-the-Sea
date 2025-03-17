@@ -78,8 +78,8 @@ class Menu extends Phaser.Scene {
 			this.scene.start('creditsScene')    
 		  }
 
-		if (Phaser.Input.Keyboard.JustDown(this.winKey)) {      
-			this.scene.start('winScene')    
-		  }
+		// if (Phaser.Input.Keyboard.JustDown(this.winKey)) {      
+		// 	this.scene.start('winScene')    
+		//   }
     }
 }
