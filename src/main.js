@@ -14,7 +14,7 @@ let config = {
         default: 'arcade',
 		arcade: {
 			gravity: { y: window.innerHeight/2 },  // Gravity applied to all physics objects
-			debug: true
+			debug: false
 		},
 		scale: {
 			mode: Phaser.Scale.FIT,

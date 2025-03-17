@@ -21,6 +21,7 @@ class Load extends Phaser.Scene {
         this.load.image('sand', './assets/SandTile.png')
 		this.load.image('greatWave', './assets/GreatWave.png')
         this.load.image('debris', './assets/debris.png')
+        this.load.image('home', './assets/Home.png')
 
 		// load menu assets
 		this.load.image('title', './assets/Title.png')

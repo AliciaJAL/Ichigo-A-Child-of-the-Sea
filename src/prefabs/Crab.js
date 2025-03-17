@@ -4,6 +4,11 @@ class Crab extends PhysicsObject {
 		this.setScale((window.innerHeight/this.height)/12)
 		this.setOrigin(0, 1)
 
+		this.body.setSize(this.width, this.height/2)
+		this.body.setOffset(0, this.height/2)
+
+
+
 			// Set crab movement speed
 			this.speed = 150;  
 

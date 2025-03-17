@@ -30,20 +30,18 @@ class Player extends PhysicsObject {
 		if (this.scene.leftKey.isDown) {
 			this.setVelocityX(-this.VEL)  // Supppose make sure the leftward velocity is smooth
 			this.play('walking', true)
+			this.setFlipX(true) 
 		} else if (this.scene.rightKey.isDown) {
 			this.setVelocityX(this.VEL)  // Handle rightward velocity
 			this.play('walking', true)
+			this.setFlipX(false) 
 		}else{
 			this.setVelocityX(0)
 			this.play('idle', true)
 		}
 
 		// Round the position to avoid subpixel movement causing jitter
-		this.setPosition(Math.round(this.x), Math.round(this.y))
-
-		direction.x = this.scene.rightKey.isDown - this.scene.leftKey.isDown
-		this.setFlipX(direction.x < 0) 
-		
+		this.setPosition(Math.round(this.x), Math.round(this.y))		
 		
 		/*
 		let direction = new Phaser.Math.Vector2(0);
