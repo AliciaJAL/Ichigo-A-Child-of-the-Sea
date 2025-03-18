@@ -59,7 +59,7 @@ class Play extends Phaser.Scene {
 		this.crate1 = new Crate(this, 650, window.innerHeight - (window.innerHeight / 6), this.objects)
 		this.crab1 = new Crab(this, 450, window.innerHeight - (window.innerHeight / 6),'redCrab', this.objects)
 		this.debris1 = new Debris(this, 1200,  window.innerHeight-this.sand.displayHeight, this.staticGroup)
-		this.crate3 = new Crate(this, 2000, window.innerHeight - (window.innerHeight / 6), this.objects)
+		this.crate2 = new Crate(this, 2000, window.innerHeight - (window.innerHeight / 6), this.objects)
 		this.crab2 = new Crab(this, 2200, window.innerHeight - (window.innerHeight / 6),'redCrab', this.objects)
 		this.crate3 = new Crate(this, 2350, window.innerHeight - (window.innerHeight / 6), this.objects)
 		this.debris2 = new Debris(this, 3800,  window.innerHeight-this.sand.displayHeight, this.staticGroup)
@@ -69,15 +69,15 @@ class Play extends Phaser.Scene {
 
 		this.home = new Homer(this, 8730, window.innerHeight - (window.innerHeight / 4.2), this.staticGroup).setOrigin(0, 1)
 
-		this.crab4 = new Crab(this, 7900, window.innerHeight - (window.innerHeight / 6)-this.crate1.height,'purpleCrab', this.objects)
+		this.crab4 = new Crab(this, 7900, window.innerHeight - (window.innerHeight / 6)-this.crate1.height/2,'purpleCrab', this.objects)
 		this.crate7 = new Crate(this, 8000, window.innerHeight - (window.innerHeight / 6)-this.crate1.height, this.objects)
 		this.debris4 = new Debris(this, 9500,  window.innerHeight-this.sand.displayHeight, this.staticGroup)
 		this.crate8 = new Crate(this, 9740, window.innerHeight - (window.innerHeight / 6)-this.crate1.height/2, this.objects)
-		this.crab5 = new Crab(this, 9900,  this.crate8.height,'purpleCrab', this.objects)
+		this.crab5 = new Crab(this, 10200,  window.innerHeight - (window.innerHeight / 6)-this.crate1.height/2,'purpleCrab', this.objects)
 
 		this.lowDebris = new Debris(this, 9300,  window.innerHeight-this.sand.displayHeight, this.staticGroup).setDisplaySize(200,(window.innerHeight / 32))
 
-		this.rightwall = new Debris(this, 10000,  window.innerHeight-this.sand.displayHeight*2.8, this.staticGroup).setOrigin(0, 1)
+		this.rightwall = new Debris(this, 10000,  window.innerHeight-this.sand.displayHeight*2.65, this.staticGroup).setOrigin(0, 1)
 
 
 
@@ -108,7 +108,7 @@ class Play extends Phaser.Scene {
 
 		this.player = new Player(this, 200, window.innerHeight - (window.innerHeight / 6), this.objects)
 
-		this.warningSigns = this.add.sprite(0,0,'warningSigns').setPosition(window.innerWidth-(window.innerWidth-100), this.player.y-25)
+		this.warningSigns = this.add.sprite(0,0,'warningSigns').setPosition(100, this.player.y-25)
 		this.warningSigns.setDisplaySize((window.innerWidth*(546/650))/6, (window.innerHeight*(546/650))/3)
 
 		this.anims.create({
@@ -195,7 +195,6 @@ class Play extends Phaser.Scene {
     update(time, dt) {
 		time /= 1000
 		dt /= 1000
-
 
 		if (this.player.y<410 && this.player.x<9130 && this.player.x>9000){
 			this.scene.start('winScene')    
