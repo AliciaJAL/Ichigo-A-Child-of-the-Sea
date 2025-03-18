@@ -33,9 +33,9 @@ class Win extends Phaser.Scene {
         this.door2.setDisplaySize(window.innerWidth/2.5, window.innerHeight)
         this.door2.setPosition(0, window.innerHeight/2)
 
-		this.title = this.add.sprite(0, 0, "winControls").setOrigin(0.5, 0.5)
-        this.title.setDisplaySize(window.innerWidth*(1775/589)/12, window.innerHeight*(1775/589)/12)
-        this.title.setPosition(window.innerWidth / 4*3, window.innerHeight /6 + window.innerHeight*(2089/1067)/6)
+		// this.title = this.add.sprite(0, 0, "winControls").setOrigin(0.5, 0.5)
+        // this.title.setDisplaySize(window.innerWidth*(1775/589)/12, window.innerHeight*(1775/589)/12)
+        // this.title.setPosition(window.innerWidth / 4*3, window.innerHeight /6 + window.innerHeight*(2089/1067)/6)
 
 
 
