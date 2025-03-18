@@ -39,6 +39,11 @@ class Win extends Phaser.Scene {
 		this.futon.setScale((window.innerHeight/251)/3)
 		this.futon.setPosition(window.innerWidth / 4,  window.innerHeight - (window.innerHeight / 8))
 
+		this.title = this.add.sprite(0, 0, "winControls").setOrigin(0.5, 0.5)
+        this.title.setDisplaySize(window.innerWidth*(1775/589)/12, window.innerHeight*(1775/589)/12)
+        this.title.setPosition(window.innerWidth / 4*3, window.innerHeight /6 + window.innerHeight*(2089/1067)/6)
+
+
 
 
 /*
