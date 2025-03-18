@@ -7,8 +7,8 @@ class Wave extends PhysicsObject {
 
         // this.scene.physics.world.enable(this)
         // Set Physics Body 
-        this.body.setSize(this.width * 0.6, this.height*0.8)
-        this.body.setOffset(this.width/4, this.height/8.8)
+        this.body.setSize(this.width * 0.2, this.height*0.8)
+        this.body.setOffset(this.width/1.7, this.height/7)
 
         // Physics Properties
         this.body.allowGravity = false
