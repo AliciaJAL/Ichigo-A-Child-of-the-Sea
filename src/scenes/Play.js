@@ -34,12 +34,12 @@ class Play extends Phaser.Scene {
 		this.sand = new Sand(this, 0, window.innerHeight - (window.innerHeight / 12), this.staticGroup)
 
 		this.sandUpper = new Debris(this, 5100, window.innerHeight - (window.innerHeight / 36), this.staticGroup).setOffset(0,0)
-		this.sandUpper.setSize(1630, this.height)
+		this.sandUpper.setSize(4300, this.height)
 
 
 
 		this.sandUpper2 = new Debris(this, 7800, window.innerHeight - (window.innerHeight / 64), this.staticGroup).setOffset(0,0)
-		this.sandUpper2.setSize(1630, this.height)
+		this.sandUpper2.setSize(4300, this.height)
 
 
 		this.sandSprite = this.add.sprite(0, 0, "sand").setOrigin(0, 1)
@@ -48,8 +48,8 @@ class Play extends Phaser.Scene {
 		this.sandSprite.setScrollFactor(0)
 
 		this.sandUpperSprite = this.add.sprite(0, 0, "sand").setOrigin(0, 1)
-		this.sandUpperSprite.setDisplaySize(2000, window.innerHeight/6)
-		this.sandUpperSprite.setPosition(4600, window.innerHeight - (window.innerHeight / 7))
+		this.sandUpperSprite.setDisplaySize(2010, window.innerHeight/6)
+		this.sandUpperSprite.setPosition(4590, window.innerHeight - (window.innerHeight / 7))
 
 		
 		this.sandUpperSprite2 = this.add.sprite(0, 0, "sand").setOrigin(0, 1)
@@ -75,7 +75,8 @@ class Play extends Phaser.Scene {
 		this.crate8 = new Crate(this, 9740, window.innerHeight - (window.innerHeight / 6)-this.crate1.height/2, this.objects)
 		this.crab5 = new Crab(this, 10200,  window.innerHeight - (window.innerHeight / 6)-this.crate1.height/2,'purpleCrab', this.objects)
 
-		this.lowDebris = new Debris(this, 9300,  window.innerHeight-this.sand.displayHeight, this.staticGroup).setDisplaySize(200,(window.innerHeight / 32))
+		this.lowDebris = new Debris(this, 9300,  window.innerHeight-this.sand.displayHeight, this.staticGroup).setTexture('sand').setDisplaySize(200,(window.innerHeight / 32))
+
 
 		this.rightwall = new Debris(this, 10000,  window.innerHeight-this.sand.displayHeight*2.65, this.staticGroup).setOrigin(0, 1)
 
