@@ -3,7 +3,7 @@ class Debris extends PhysicsObject {
     constructor(scene, x, y, group) {
         super(scene, x, y, "debris", group); // Call Sprite parent class
 		
-		this.setDisplaySize(800, window.innerHeight / 3.8)
+		this.setDisplaySize(800, window.innerHeight / 3.6)
 		this.setOrigin(0, 1)
 
 
@@ -14,6 +14,8 @@ class Debris extends PhysicsObject {
 
 		// Setting Physics
 		this.body.setAllowGravity(false)
-		this.body.setImmovable(true)		
+		this.body.setImmovable(true)
+		
+		this.y+=window.innerHeight / 42
 	}
 }

@@ -31,6 +31,8 @@ class Load extends Phaser.Scene {
         this.load.image('controls', './assets/Controls.png')
         this.load.image('warningSigns', './assets/warningSigns.png')
         this.load.image('mechSign', './assets/mechanicSign.png')
+
+        this.load.image('credits', './assets/Credits.png')
    
         // game over assets
         this.load.image('playerDeath', './assets/playerDeath.png')
@@ -38,16 +40,12 @@ class Load extends Phaser.Scene {
         this.load.image('gameOver', './assets/GameOverText.png')
 
 
-        // win screen assests
-        this.load.image('floor', './assets/Floor.png')
-        this.load.image('door', './assets/Door.png')
-        this.load.image('door2', './assets/Door2.png')
-        this.load.image('futon', './assets/Futon.png')
-        this.load.image('winControls', './assets/winControls.png')
-
-
-        this.load.image('credits', './assets/Credits.png')
-
+		// win screen assests
+		this.load.image('floor', './assets/Floor.png')
+		this.load.image('door', './assets/Door.png')
+		this.load.image('door2', './assets/Door2.png')
+		this.load.image('futon', './assets/Futon.png')
+        this.load.image('winControls', './assets/WinControls.png')
 
         // load spritesheet
         this.load.spritesheet('waveBackground', './assets/waveSheet.png', {

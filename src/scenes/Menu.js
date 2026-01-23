@@ -67,16 +67,18 @@ class Menu extends Phaser.Scene {
 
         this.startKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
 		this.winKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W)
-		this.creditsKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C)
+		this.creditsKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
+
     }
 
     update() {
         if (Phaser.Input.Keyboard.JustDown(this.startKey)) {      
           this.scene.start('playScene')    
         }
-		if (Phaser.Input.Keyboard.JustDown(this.creditsKey)) {      
-			this.scene.start('creditsScene')    
-		  }
+		
+		if (this.creditsKey && Phaser.Input.Keyboard.JustDown(this.creditsKey)) {      
+			this.scene.start('creditsScene');    
+		}
 
 		// if (Phaser.Input.Keyboard.JustDown(this.winKey)) {      
 		// 	this.scene.start('winScene')    
